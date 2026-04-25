@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import homePageImage from "./assets/home_page_image.jpeg";
 
 function HomePage() {
   return (
@@ -10,60 +9,56 @@ function HomePage() {
           Travel like a <em>local</em>, not a tourist.
         </h1>
 
-        <p>
+        <p className="description">
           Get a custom, A-to-Z itinerary designed by verified residents. Skip
           the traps, find the soul of the city.
         </p>
+
+        <div className="social-proof">
+          <div className="avatar-stack">
+            <div
+              className="avatar"
+              style={{ background: "oklch(0.65 0.18 230)" }}
+            />
+            <div
+              className="avatar"
+              style={{ background: "oklch(0.70 0.18 260)" }}
+            />
+            <div
+              className="avatar"
+              style={{ background: "oklch(0.75 0.18 290)" }}
+            />
+          </div>
+          <p>
+            <strong>2,400+ travelers waiting</strong>
+          </p>
+        </div>
 
         <div className="cta-section">
           <button className="join-button">
             Scroll to Join <span className="arrow">&darr;</span>
           </button>
-
-          <div className="social-proof">
-            <div className="avatar-stack">
-              <div
-                className="avatar"
-                style={{ background: "oklch(0.65 0.18 230)" }}
-              />
-              <div
-                className="avatar"
-                style={{ background: "oklch(0.70 0.18 260)" }}
-              />
-              <div
-                className="avatar"
-                style={{ background: "oklch(0.75 0.18 290)" }}
-              />
-            </div>
-            <p>
-              <strong>2,400+</strong> <span>travelers waiting</span>
-            </p>
-          </div>
         </div>
       </HomePageInfo>
-
-      <HomePageImage>
-        <img src={homePageImage} alt="Travel Itinerary" />
-      </HomePageImage>
     </HomePageComponent>
   );
 }
 
 const HomePageComponent = styled.section`
   display: flex;
-  flex-direction: column; /* Stack vertically by default (mobile first) */
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 32px;
   padding: 40px 24px;
   max-width: 1280px;
   margin: 0 auto;
+  color: black;
 
-  /* Desktop View */
   @media (min-width: 1024px) {
-    flex-direction: row; /* Side-by-side on large screens */
+    flex-direction: row;
     gap: 64px;
     padding: 80px 40px;
-    height: 100vh; /* Optional: Center it vertically on the screen */
   }
 `;
 
@@ -92,9 +87,10 @@ const HomePageInfo = styled.div`
     font-weight: 600;
     line-height: 1.05;
     letter-spacing: -0.025em;
-    color: #111827;
+    color: black;
     margin: 0;
     text-wrap: balance;
+    text-align: center;
   }
 
   em {
@@ -104,11 +100,12 @@ const HomePageInfo = styled.div`
   }
 
   .description {
+    text-align: center;
     margin-top: 24px;
     font-size: 18px;
     line-height: 1.6;
     color: #5c646f;
-    max-width: 480px;
+    font-size: 20px;
   }
 
   .cta-section {
@@ -116,6 +113,7 @@ const HomePageInfo = styled.div`
     align-items: center;
     gap: 16px;
     margin-top: 32px;
+    justify-content: center;
   }
 
   .join-button {
@@ -129,6 +127,7 @@ const HomePageInfo = styled.div`
     cursor: pointer;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     transition: background 0.2s;
 
@@ -139,13 +138,15 @@ const HomePageInfo = styled.div`
 
   .social-proof {
     display: flex;
+    justify-content: center;
     align-items: center;
     gap: 12px;
     font-size: 14px;
-    color: #5c646f;
+    color: black;
 
     strong {
-      color: #111827;
+      color: black;
+      margin-left: 10px;
     }
   }
 
@@ -166,22 +167,4 @@ const HomePageInfo = styled.div`
   }
 `;
 
-const HomePageImage = styled.div`
-  flex: 1;
-  width: 100%; /* Take full width on mobile */
-  display: flex;
-  justify-content: center;
-
-  img {
-    height: auto;
-    width: 100%;
-    max-width: 500px; /* Prevent it from getting too huge on massive monitors */
-    border-radius: 16px;
-
-    @media (min-width: 1024px) {
-      max-width: 566px; /* Match the exact width from your original code */
-      border-radius: 24px;
-    }
-  }
-`;
 export default HomePage;
