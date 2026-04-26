@@ -2,6 +2,13 @@ import React from "react";
 import styled from "styled-components";
 
 function HomePage() {
+  const scrollToWaitList = () => {
+    const element = document.getElementById("signup-form");
+
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
     <HomePageComponent>
       <HomePageInfo>
@@ -36,7 +43,7 @@ function HomePage() {
         </div>
 
         <div className="cta-section">
-          <button className="join-button">
+          <button className="join-button" onClick={scrollToWaitList}>
             Scroll to Join <span className="arrow">&darr;</span>
           </button>
         </div>
@@ -46,25 +53,26 @@ function HomePage() {
 }
 
 const HomePageComponent = styled.section`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 32px;
-  padding: 40px 24px;
   max-width: 1280px;
   margin: 0 auto;
   color: black;
-
-  @media (min-width: 1024px) {
-    flex-direction: row;
-    gap: 64px;
-    padding: 80px 40px;
-  }
 `;
 
 const HomePageInfo = styled.div`
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 100vh;
+
   font-family:
     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
     sans-serif;
@@ -84,7 +92,7 @@ const HomePageInfo = styled.div`
   }
 
   h1 {
-    font-size: 72px;
+    font-size: clamp(2.25rem, 11vw, 4.5rem);
     font-weight: 600;
     line-height: 1.05;
     letter-spacing: -0.025em;
@@ -101,13 +109,16 @@ const HomePageInfo = styled.div`
   }
 
   .description {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     margin-top: 24px;
-    font-size: 18px;
+    font-size: clamp(1rem, 4.2vw, 1.25rem);
     line-height: 1.6;
     color: #5c646f;
-    font-size: 20px;
     font-weight: 500;
+    max-width: 680px;
   }
 
   .cta-section {
