@@ -29,7 +29,8 @@ function HomePage() {
               style={{ background: "oklch(0.75 0.18 290)" }}
             />
           </div>
-          <p>
+
+          <p className="">
             <strong>2,400+ travelers waiting</strong>
           </p>
         </div>
@@ -106,6 +107,7 @@ const HomePageInfo = styled.div`
     line-height: 1.6;
     color: #5c646f;
     font-size: 20px;
+    font-weight: 500;
   }
 
   .cta-section {
@@ -122,14 +124,16 @@ const HomePageInfo = styled.div`
     border: none;
     padding: 12px 24px;
     border-radius: 8px;
-    font-weight: 500;
-    font-size: 16px;
+    font-weight: 600;
+    font-size: 18px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
     transition: background 0.2s;
+    width: 220px;
+    height: 55px;
 
     &:hover {
       background: #1e36b3;
@@ -147,6 +151,7 @@ const HomePageInfo = styled.div`
     strong {
       color: black;
       margin-left: 10px;
+      font-size: 18px;
     }
   }
 
@@ -156,8 +161,8 @@ const HomePageInfo = styled.div`
   }
 
   .avatar {
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     border: 2px solid white;
     margin-left: -8px;
