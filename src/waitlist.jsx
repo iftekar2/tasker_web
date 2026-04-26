@@ -3,6 +3,8 @@ import styled from "styled-components";
 import icon from "./assets/icons8-magic-24.png";
 
 function WaitList() {
+  const [userRole, setUserRole] = React.useState(null);
+
   return (
     <WaitListComponent id="signup-form">
       <WaitListSection>
@@ -55,9 +57,25 @@ function WaitList() {
               </InputWrapper>
             </EmailSection>
 
-            {/* <UserTypeSection>
+            <RoleSelection>
+              <OptionCard
+                selected={userRole === "traveler"}
+                onClick={() => setUserRole("traveler")}
+              >
+                <span className="icon">🌎</span>
+                <h4>Traveler</h4>
+                <p>I want to find unique, local itineraries.</p>
+              </OptionCard>
 
-            </UserTypeSection> */}
+              <OptionCard
+                selected={userRole === "creator"}
+                onClick={() => setUserRole("creator")}
+              >
+                <span className="icon">✍️</span>
+                <h4>Creator</h4>
+                <p>I want to share my local knowledge.</p>
+              </OptionCard>
+            </RoleSelection>
 
             <ContinueButtonSection>
               <button>Continue &rarr;</button>
@@ -327,9 +345,60 @@ const ContinueButtonSection = styled.div`
 
 const SpanText = styled.div`
   font-size: 12px;
+  color: #6b7280;
   font-family:
     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
     sans-serif;
+`;
+
+const RoleSelection = styled.div`
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  margin-top: 24px;
+  margin-bottom: 20px;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+  }
+`;
+
+const OptionCard = styled.div`
+  flex: 1;
+  padding: 20px;
+  border: 2px solid ${(props) => (props.selected ? "#2b48e6" : "#e5e7eb")};
+  background: ${(props) =>
+    props.selected ? "rgba(43, 72, 230, 0.05)" : "white"};
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  &:hover {
+    border-color: #2b48e6;
+    transform: translateY(-2px);
+  }
+
+  .icon {
+    font-size: 24px;
+  }
+
+  h4 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: ${(props) => (props.selected ? "#2b48e6" : "#1f2937")};
+  }
+
+  p {
+    margin: 0;
+    font-size: 16px;
+    color: #6b7280;
+    line-height: 1.4;
+  }
 `;
 
 export default WaitList;
