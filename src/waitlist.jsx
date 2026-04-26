@@ -31,7 +31,38 @@ function WaitList() {
             </StepsContainer>
           </BlueHeader>
 
-          <UserInputSection>{/* Your inputs go here */}</UserInputSection>
+          <UserInputSection>
+            <NameSection>
+              <InputWrapper>
+                <label>First Name</label>
+                <input type="text" placeholder="James" required />
+              </InputWrapper>
+
+              <InputWrapper>
+                <label>Last Name</label>
+                <input type="text" placeholder="Adam" required />
+              </InputWrapper>
+            </NameSection>
+
+            <EmailSection>
+              <InputWrapper>
+                <label> Email</label>
+                <input
+                  type="email"
+                  placeholder="you@email.com"
+                  required
+                ></input>
+              </InputWrapper>
+            </EmailSection>
+
+            {/* <UserTypeSection>
+
+            </UserTypeSection> */}
+
+            <ContinueButtonSection>
+              <button>Continue &rarr;</button>
+            </ContinueButtonSection>
+          </UserInputSection>
         </WaitListForm>
       </WaitListSection>
     </WaitListComponent>
@@ -73,16 +104,15 @@ const WaitListInfo = styled.h3`
 
 const WaitListForm = styled.div`
   width: 95%;
-  max-width: 600px;
+  max-width: 550px;
   position: relative;
   margin-top: 40px;
-  /* Remove the background from here, we will move it to a 'Header' div */
 `;
 
 const BlueHeader = styled.div`
   background: #2e58ee;
-  border-radius: 24px 24px 0 0; /* Only round the top corners */
-  padding: 40px 40px 60px 40px; /* Extra bottom padding for the overlap */
+  border-radius: 24px 24px 0 0;
+  padding: 40px 40px 60px 40px;
 
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
@@ -91,11 +121,10 @@ const BlueHeader = styled.div`
 
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centers the LimitedAccess and Title */
+  align-items: center;
 `;
 
 const LimitedAccessText = styled.div`
-  /* Change display to inline-flex */
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -159,24 +188,135 @@ const Step = styled.div`
 
 const UserInputSection = styled.div`
   background: white;
-
-  /* 1. Change width to 100% so it fits its parent perfectly */
   width: 100%;
-
-  /* 2. Use box-sizing to ensure padding doesn't push the width wider than 100% */
   box-sizing: border-box;
-
-  padding: 40px;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  padding-left: 40px;
+  padding-right: 40px;
   border-radius: 24px;
   margin-top: -40px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   position: relative;
   z-index: 2;
 
-  /* 3. On very small screens, reduce padding so the inputs have more room */
   @media (max-width: 480px) {
     padding: 24px 16px;
     border-radius: 16px;
+  }
+`;
+
+const NameSection = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  width: 100%;
+  text-align: left;
+
+  @media (max-width: 480px) {
+    flex-direction: row;
+    gap: 20px;
+  }
+`;
+
+const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+  width: 100%;
+
+  label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #6b7280;
+    font-weight: 700;
+  }
+
+  input {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    padding: 12px 16px;
+    height: 48px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+    background: #ffffff;
+
+    &:focus {
+      outline: none;
+      border-color: #2b48e6;
+      box-shadow: 0 0 0 4px rgba(43, 72, 230, 0.1); /* Soft glow effect */
+    }
+
+    &::placeholder {
+      color: #9ca3af;
+    }
+  }
+`;
+
+const EmailSection = styled.div`
+  flex: 1;
+  width: 100%;
+  margin-top: 20px;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  margin-bottom: 20px;
+
+  label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #6b7280;
+    text-align: left;
+  }
+
+  input {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    padding: 12px 16px;
+    height: 48px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+    background: #ffffff;
+
+    &:focus {
+      outline: none;
+      border-color: #2b48e6;
+      box-shadow: 0 0 0 4px rgba(43, 72, 230, 0.1); /* Soft glow effect */
+    }
+
+    &::placeholder {
+      color: #9ca3af;
+    }
+  }
+`;
+
+const ContinueButtonSection = styled.div`
+  button {
+    display: inline-flex;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.375rem;
+    width: 100%;
+    height: 3rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 500;
+
+    background: #2e58ee;
+    color: white;
+    border: none;
   }
 `;
 
