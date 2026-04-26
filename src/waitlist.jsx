@@ -62,6 +62,10 @@ function WaitList() {
             <ContinueButtonSection>
               <button>Continue &rarr;</button>
             </ContinueButtonSection>
+
+            <SpanText>
+              No spam. We'll only email when your local is matched.
+            </SpanText>
           </UserInputSection>
         </WaitListForm>
       </WaitListSection>
@@ -317,7 +321,15 @@ const ContinueButtonSection = styled.div`
     background: #2e58ee;
     color: white;
     border: none;
+    margin-bottom: 20px;
   }
+`;
+
+const SpanText = styled.div`
+  font-size: 12px;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
 `;
 
 export default WaitList;
