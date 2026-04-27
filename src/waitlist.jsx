@@ -1,9 +1,34 @@
 import React from "react";
 import styled from "styled-components";
 import icon from "./assets/icons8-magic-24.png";
+import UserLocation from "./user_location";
 
 function WaitList() {
   const [userRole, setUserRole] = React.useState(null);
+  const [step, setStep] = React.useState(1);
+
+  const handleContinue = (e) => {
+    e.preventDefault();
+    if (userRole) {
+      setStep(2);
+    } else {
+      alert(
+        "Please select whether you are a Traveler or a Creator to proceed.",
+      );
+    }
+  };
+
+  if (step === 2) {
+    return (
+      <WaitListComponent id="signup-form">
+        <WaitListSection>
+          <WaitListTitle>Join the waitlist</WaitListTitle>
+          <WaitListInfo>Two steps. One unforgettable trip.</WaitListInfo>
+          <UserLocation userType={userRole} onBack={() => setStep(1)} />
+        </WaitListSection>
+      </WaitListComponent>
+    );
+  }
 
   return (
     <WaitListComponent id="signup-form">
@@ -33,7 +58,7 @@ function WaitList() {
             </StepsContainer>
           </BlueHeader>
 
-          <UserInputSection>
+          <UserInputSection as="form" onSubmit={handleContinue}>
             <NameSection>
               <InputWrapper>
                 <label>First Name</label>
@@ -78,7 +103,7 @@ function WaitList() {
             </RoleSelection>
 
             <ContinueButtonSection>
-              <button>Continue &rarr;</button>
+              <button type="submit">Continue &rarr;</button>
             </ContinueButtonSection>
 
             <SpanText>
@@ -95,11 +120,9 @@ const WaitListComponent = styled.div`
   min-height: 100vh;
   width: 100%;
   text-align: center;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   padding: 24px;
 `;
 
@@ -208,7 +231,7 @@ const Step = styled.div`
   }
 `;
 
-const UserInputSection = styled.div`
+const UserInputSection = styled.form`
   background: white;
   width: 100%;
   box-sizing: border-box;
