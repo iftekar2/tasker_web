@@ -6,6 +6,16 @@ import UserLocation from "./user_location";
 function WaitList() {
   const [userRole, setUserRole] = React.useState(null);
   const [step, setStep] = React.useState(1);
+  const [formData, setFormData] = React.useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+  });
+
+  // Update function
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleContinue = (e) => {
     e.preventDefault();
@@ -62,12 +72,24 @@ function WaitList() {
             <NameSection>
               <InputWrapper>
                 <label>First Name</label>
-                <input type="text" placeholder="James" required />
+                <input
+                  name="firstName"
+                  placeholder="James"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  required
+                />
               </InputWrapper>
 
               <InputWrapper>
                 <label>Last Name</label>
-                <input type="text" placeholder="Adam" required />
+                <input
+                  name="lastName"
+                  placeholder="Adam"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  required
+                />
               </InputWrapper>
             </NameSection>
 
@@ -76,7 +98,10 @@ function WaitList() {
                 <label> Email</label>
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
                   placeholder="you@email.com"
+                  onChange={handleChange}
                   required
                 ></input>
               </InputWrapper>
