@@ -35,7 +35,6 @@ const ConfirmedPage = ({ userType }) => {
             <p className="active-status">Priority Access</p>
           </StatusItem>
         </StatusSection>
-
         {/* <Divider /> */}
 
         <InfoText>
