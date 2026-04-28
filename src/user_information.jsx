@@ -3,6 +3,7 @@ import styled from "styled-components";
 import icon from "./assets/icons8-magic-24.png";
 import UserLocation from "./user_location";
 import { supabase } from "./supabase_client";
+import ConfirmedPage from "./ConfirmedPage";
 
 function UserInformation() {
   const [userRole, setUserRole] = React.useState(null);
@@ -43,26 +44,34 @@ function UserInformation() {
       if (error.code === "23505") {
         alert("That email is already on the waitlist.");
       } else {
-        alert(error.message || "Something went wrong. Please try again.");
+        alert(error.message || "Something went wrong.");
       }
       throw error;
     } else {
+      // FIX: Update the state to move to the confirmation screen
+      setStep(3);
     }
-
-    alert("You’re on the list. We’ll be in touch.");
   };
 
   if (step === 2) {
     return (
       <WaitListComponent id="signup-form">
         <WaitListSection>
-          <WaitListTitle>Join the waitlist</WaitListTitle>
-          <WaitListInfo>Two steps. One unforgettable trip.</WaitListInfo>
           <UserLocation
             userType={userRole}
             onBack={() => setStep(1)}
             onSubmit={handleFinalSubmit}
           />
+        </WaitListSection>
+      </WaitListComponent>
+    );
+  }
+
+  if (step === 3) {
+    return (
+      <WaitListComponent id="signup-form">
+        <WaitListSection>
+          <ConfirmedPage userType={userRole} />
         </WaitListSection>
       </WaitListComponent>
     );
@@ -91,7 +100,7 @@ function UserInformation() {
                 <span className="step-number">2</span> · TRAVEL
               </Step>
               <Step>
-                <span className="check-icon">✓</span> CONFIRMED
+                <span className="step-number">3</span> CONFIRMED
               </Step>
             </StepsContainer>
           </BlueHeader>
@@ -194,6 +203,7 @@ const WaitListTitle = styled.div`
 
 const WaitListInfo = styled.h3`
   margin-top: 20px;
+  margin-bottom: 20px;
   font-size: 35px;
   font-family:
     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
@@ -204,7 +214,6 @@ const WaitListForm = styled.div`
   width: 95%;
   max-width: 550px;
   position: relative;
-  margin-top: 40px;
 `;
 
 const BlueHeader = styled.div`
@@ -276,11 +285,6 @@ const Step = styled.div`
 
   .step-number {
     font-variant-numeric: tabular-nums;
-  }
-
-  .check-icon {
-    font-size: 14px;
-    font-weight: 900;
   }
 `;
 

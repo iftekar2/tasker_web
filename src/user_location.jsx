@@ -31,6 +31,9 @@ function UserLocation({ userType, onBack, onSubmit }) {
 
   return (
     <UserLocationComponent>
+      <WaitListTitle>Join the waitlist</WaitListTitle>
+      <WaitListInfo>Two steps. One unforgettable trip.</WaitListInfo>
+
       <BlueHeader>
         <Badge>STEP 2 · LOCATION</Badge>
 
@@ -93,8 +96,23 @@ function UserLocation({ userType, onBack, onSubmit }) {
 
 const UserLocationComponent = styled.div`
   width: 95%;
-  max-width: 600px;
+  max-width: 550px;
   position: relative;
+`;
+
+const WaitListTitle = styled.div`
+  font-size: 25px;
+  letter-spacing: 2px;
+  color: #2b48e6;
+`;
+
+const WaitListInfo = styled.h3`
+  margin-top: 20px;
+  margin-: 20px;
+  font-size: 35px;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
 `;
 
 const BlueHeader = styled.div`
