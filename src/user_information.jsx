@@ -2,8 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import icon from "./assets/icons8-magic-24.png";
 import UserLocation from "./user_location";
+import { supabase } from "./supabase_client";
 
-function WaitList() {
+function UserInformation() {
   const [userRole, setUserRole] = React.useState(null);
   const [step, setStep] = React.useState(1);
   const [formData, setFormData] = React.useState({
@@ -28,13 +29,40 @@ function WaitList() {
     }
   };
 
+  const handleFinalSubmit = async ({ country, city }) => {
+    const { error } = await supabase.from("users").insert({
+      first_name: formData.firstName.trim(),
+      last_name: formData.lastName.trim(),
+      email: formData.email.trim().toLowerCase(),
+      user_type: userRole,
+      country: country.trim(),
+      city: city.trim(),
+    });
+
+    if (error) {
+      if (error.code === "23505") {
+        alert("That email is already on the waitlist.");
+      } else {
+        alert(error.message || "Something went wrong. Please try again.");
+      }
+      throw error;
+    } else {
+    }
+
+    alert("You’re on the list. We’ll be in touch.");
+  };
+
   if (step === 2) {
     return (
       <WaitListComponent id="signup-form">
         <WaitListSection>
           <WaitListTitle>Join the waitlist</WaitListTitle>
           <WaitListInfo>Two steps. One unforgettable trip.</WaitListInfo>
-          <UserLocation userType={userRole} onBack={() => setStep(1)} />
+          <UserLocation
+            userType={userRole}
+            onBack={() => setStep(1)}
+            onSubmit={handleFinalSubmit}
+          />
         </WaitListSection>
       </WaitListComponent>
     );
@@ -449,4 +477,4 @@ const OptionCard = styled.div`
   }
 `;
 
-export default WaitList;
+export default UserInformation;

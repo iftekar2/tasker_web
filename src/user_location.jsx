@@ -1,19 +1,32 @@
 import React from "react";
 import styled from "styled-components";
 
-function UserLocation({ userType, onBack }) {
+function UserLocation({ userType, onBack, onSubmit }) {
   const isTraveler = userType === "traveler";
   const [formData, setFormData] = React.useState({
     country: "",
     city: "",
   });
+  const [submitting, setSubmitting] = React.useState(false);
 
   const updateUseState = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleContinue = (e) => {
+  const handleContinue = async (e) => {
     e.preventDefault();
+    if (!onSubmit || submitting) return;
+    setSubmitting(true);
+    try {
+      await onSubmit({
+        country: formData.country,
+        city: formData.city,
+      });
+    } catch {
+      /* error surfaced in parent */
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -65,7 +78,9 @@ function UserLocation({ userType, onBack }) {
           <BackButton type="button" onClick={onBack}>
             Back
           </BackButton>
-          <SubmitButton type="submit">Join the Waitlist</SubmitButton>
+          <SubmitButton type="submit" disabled={submitting}>
+            {submitting ? "Sending…" : "Join the Waitlist"}
+          </SubmitButton>
         </ButtonGroup>
 
         <SpanText>

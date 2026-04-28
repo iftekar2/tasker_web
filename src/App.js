@@ -1,13 +1,13 @@
 import HomePage from "./home_page";
 import styled from "styled-components";
-import Waitlist from "./waitlist";
+import UserInformation from "./user_information";
 
 function App() {
   return (
     <div className="App">
       <MainLayout>
         <HomePage />
-        <Waitlist />
+        <UserInformation />
       </MainLayout>
     </div>
   );
