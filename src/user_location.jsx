@@ -3,6 +3,18 @@ import styled from "styled-components";
 
 function UserLocation({ userType, onBack }) {
   const isTraveler = userType === "traveler";
+  const [formData, setFormData] = React.useState({
+    country: "",
+    city: "",
+  });
+
+  const updateUseState = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleContinue = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <UserLocationComponent>
@@ -26,22 +38,34 @@ function UserLocation({ userType, onBack }) {
         </StepsContainer>
       </BlueHeader>
 
-      <UserInputSection>
+      <UserInputSection as="form" onSubmit={handleContinue}>
         <InputWrapper>
           <label>{isTraveler ? "DESTINATION COUNTRY" : "YOUR COUNTRY"}</label>
-          <input type="text" placeholder="e.g. Italy" />
+          <input
+            name="country"
+            placeholder="e.g. Italy"
+            value={formData.country}
+            onChange={updateUseState}
+            required
+          />
         </InputWrapper>
 
         <InputWrapper>
           <label>{isTraveler ? "WHICH CITY?" : "CITY OF EXPERTISE"}</label>
-          <input type="text" placeholder="e.g. Florence" />
+          <input
+            name="city"
+            placeholder="e.g. Florence"
+            value={formData.city}
+            onChange={updateUseState}
+            required
+          />
         </InputWrapper>
 
         <ButtonGroup>
           <BackButton type="button" onClick={onBack}>
             Back
           </BackButton>
-          <SubmitButton>Join the Waitlist</SubmitButton>
+          <SubmitButton type="submit">Join the Waitlist</SubmitButton>
         </ButtonGroup>
 
         <SpanText>
@@ -71,39 +95,6 @@ const BlueHeader = styled.div`
   align-items: center;
   text-align: center;
 `;
-
-// const TwoItems = styled.div`
-//   width: 100%;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   position: relative;
-//   margin-bottom: 16px;
-// `;
-
-// const BackArrow = styled.div`
-//   position: absolute;
-//   left: 0;
-//   color: white;
-//   font-size: 30px;
-//   cursor: pointer;
-//   line-height: 1;
-//   transition: opacity 0.2s;
-
-//   background: white;
-//   border-radius: 50px;
-//   height: 40px;
-//   width: 40px;
-//   color: black;
-
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-
-//   &:hover {
-//     opacity: 0.7;
-//   }
-// `;
 
 const Badge = styled.div`
   background: rgba(255, 255, 255, 0.2);

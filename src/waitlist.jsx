@@ -12,13 +12,13 @@ function WaitList() {
     email: "",
   });
 
-  // Update function
-  const handleChange = (e) => {
+  const updateUseState = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleContinue = (e) => {
     e.preventDefault();
+
     if (userRole) {
       setStep(2);
     } else {
@@ -76,7 +76,7 @@ function WaitList() {
                   name="firstName"
                   placeholder="James"
                   value={formData.firstName}
-                  onChange={handleChange}
+                  onChange={updateUseState}
                   required
                 />
               </InputWrapper>
@@ -87,7 +87,7 @@ function WaitList() {
                   name="lastName"
                   placeholder="Adam"
                   value={formData.lastName}
-                  onChange={handleChange}
+                  onChange={updateUseState}
                   required
                 />
               </InputWrapper>
@@ -101,7 +101,7 @@ function WaitList() {
                   name="email"
                   value={formData.email}
                   placeholder="you@email.com"
-                  onChange={handleChange}
+                  onChange={updateUseState}
                   required
                 ></input>
               </InputWrapper>
