@@ -1,6 +1,7 @@
 import HomePage from "./home_page";
 import styled from "styled-components";
 import UserInformation from "./user_information";
+import AppDetails from "./app_details";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <MainLayout>
         <HomePage />
         <UserInformation />
+        <AppDetails />
       </MainLayout>
     </div>
   );

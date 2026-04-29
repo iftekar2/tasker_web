@@ -3,7 +3,7 @@ import styled from "styled-components";
 import icon from "./assets/icons8-magic-24.png";
 import UserLocation from "./user_location";
 import { supabase } from "./supabase_client";
-import ConfirmedPage from "./ConfirmedPage";
+import ConfirmedPage from "./confirmed_page";
 
 function UserInformation() {
   const [userRole, setUserRole] = React.useState(null);
@@ -48,7 +48,6 @@ function UserInformation() {
       }
       throw error;
     } else {
-      // FIX: Update the state to move to the confirmation screen
       setStep(3);
     }
   };
